@@ -79,11 +79,18 @@
     font-weight:500;
   }
   .chips{display:flex; flex-wrap:wrap; gap:7px; margin-top:20px;}
+  .hero-cta-group{display:flex; flex-wrap:wrap; gap:10px; margin-top:22px;}
   .hero-cta{
-    display:inline-flex; align-items:center; gap:8px; margin-top:22px;
+    display:inline-flex; align-items:center; gap:8px;
     background:var(--gold); color:var(--navy-deep); font-weight:600; font-size:14px;
     padding:13px 22px; border-radius:30px; text-decoration:none;
   }
+  .hero-cta-secondary{
+    display:inline-flex; align-items:center; gap:8px;
+    background:transparent; color:#fff; font-weight:500; font-size:14px;
+    padding:12px 20px; border-radius:30px; text-decoration:none; border:1px solid rgba(255,255,255,.35);
+  }
+  .hero-cta-secondary:hover{border-color:var(--gold-light); color:var(--gold-light);}
   .scan-bar{ cursor:pointer; }
   .navbar{
     position:sticky; top:0; z-index:50; background:rgba(8,21,46,.92); backdrop-filter:blur(6px);
@@ -239,14 +246,27 @@
   .quote p{font-family:'Playfair Display',serif; font-size:19px; font-style:italic; max-width:420px; margin:0 auto; line-height:1.5;}
   .quote .by{margin-top:14px; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-light);}
 
+  .closing-cta{
+    background:var(--paper-2); padding:38px 22px; text-align:center;
+  }
+  .closing-cta h3{font-family:'Playfair Display',serif; font-size:21px; color:var(--navy); font-weight:600;}
+  .closing-cta p{font-size:13.5px; color:var(--muted); margin:8px auto 18px; max-width:340px;}
+  .closing-cta .hero-cta{color:var(--navy-deep);}
+
   /* ---------- FOOTER ---------- */
   footer{padding:30px 22px 20px; text-align:center;}
   footer .logo{color:var(--navy); justify-content:center; display:flex;}
   footer .logo-sub{color:var(--gold);}
   footer p{font-size:11px; color:var(--muted); margin-top:10px;}
-  .footer-links{margin-top:14px; display:flex; justify-content:center; gap:18px;}
-  .footer-links a{font-size:11.5px; color:var(--navy); text-decoration:none; font-weight:500;}
-  .footer-links a:hover{color:var(--gold);}
+  .footer-links{margin-top:14px; display:flex; flex-wrap:wrap; justify-content:center; gap:20px;}
+  .footer-links a{
+    font-size:11.5px; color:var(--navy); text-decoration:none; font-weight:500;
+    display:inline-flex; align-items:center; gap:6px; border-bottom:1px solid var(--line); padding-bottom:2px;
+  }
+  .footer-links a svg{width:14px; height:14px; flex-shrink:0;}
+  .footer-links a:hover{color:var(--gold); border-color:var(--gold);}
+  .footer-links .flabel{display:flex; flex-direction:column; align-items:flex-start; line-height:1.3;}
+  .footer-links .ftag{font-size:9px; color:var(--muted); font-weight:400; text-transform:uppercase; letter-spacing:.04em;}
 
   /* ---------- STICKY CTA ---------- */
   .sticky-cta{
@@ -348,7 +368,10 @@
       <span class="eyebrow">Protocolos Terapêuticos Integrados</span>
       <h1>Seu corpo tem uma <em>história</em>.<br>A tecnologia clínica ajuda a lê-la — e a tratá-la.</h1>
       <p class="lede">Um portfólio premium com 10 protocolos integrativos, combinando avaliação, termografia, técnicas manuais, ventosaterapia, laserterapia, percussão, acupuntura e acompanhamento de evolução — com experiência clínica do início ao fim.</p>
-      <a class="hero-cta" id="heroCta" href="#protocols">Ver os protocolos →</a>
+      <div class="hero-cta-group">
+        <a class="hero-cta" id="heroCta" href="#protocols">Ver os protocolos →</a>
+        <a class="hero-cta-secondary" id="heroCtaWa" href="#" target="_blank" rel="noopener">Falar antes de decidir</a>
+      </div>
       <a class="scan-bar" href="#tecnicas"><span class="scan-label">Termografia FLIR</span></a>
       <div class="chips">
         <span class="chip">Liberação Miofascial</span>
@@ -430,6 +453,12 @@
   <div class="by">Matheus Rodrigues · Saúde Integrativa com Tecnologia</div>
 </div>
 
+<div class="closing-cta">
+  <h3>Pronto para começar?</h3>
+  <p>Tire suas dúvidas ou já marque sua avaliação inicial direto no WhatsApp.</p>
+  <a class="hero-cta" id="closingWa" href="#" target="_blank" rel="noopener">Falar no WhatsApp →</a>
+</div>
+
 <footer>
   <div class="logo-row" style="justify-content:center; margin-bottom:6px;">
     <span class="logo">Matheus Rodrigues</span>
@@ -437,8 +466,14 @@
   <span class="logo-sub" style="display:block;">Enfermeiro · COREN 000946535-ENF · Altamira, PA</span>
   <p>Todos os protocolos incluem avaliação termográfica por câmera FLIR, relatório de evolução e materiais de apoio digitais.</p>
   <div class="footer-links">
-    <a href="https://instagram.com/matheusrodrigues.enf" target="_blank" rel="noopener">@matheusrodrigues.enf</a>
-    <a href="https://instagram.com/insive" target="_blank" rel="noopener">@insive</a>
+    <a href="https://instagram.com/matheusrodrigues.enf" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      <span class="flabel"><span class="ftag">Instagram pessoal</span>@matheusrodrigues.enf</span>
+    </a>
+    <a href="https://instagram.com/insive" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      <span class="flabel"><span class="ftag">Instagram da clínica</span>@insive</span>
+    </a>
   </div>
 </footer>
 
@@ -517,6 +552,8 @@ function waLink(msg){
 
 document.getElementById('waMain').href = waLink('Olá! Vi o portfólio de protocolos e queria saber mais.');
 document.getElementById('waNav').href = waLink('Olá! Vi o portfólio de protocolos e queria saber mais.');
+document.getElementById('heroCtaWa').href = waLink('Olá! Vi o portfólio e queria tirar uma dúvida antes de escolher o protocolo.');
+document.getElementById('closingWa').href = waLink('Olá! Vi o portfólio de protocolos e quero marcar minha avaliação inicial.');
 
 const wrap = document.getElementById('protocols');
 
