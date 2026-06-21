@@ -58,6 +58,7 @@
   .hero h1 em{color:var(--gold-light); font-style:italic;}
   .hero p.lede{margin-top:14px; font-size:14.5px; color:rgba(255,255,255,.78); max-width:420px; font-weight:300;}
   .scan-bar{
+    display:block; text-decoration:none;
     margin-top:26px; height:34px; border-radius:8px; overflow:hidden; position:relative;
     background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12);
   }
@@ -78,6 +79,33 @@
     font-weight:500;
   }
   .chips{display:flex; flex-wrap:wrap; gap:7px; margin-top:20px;}
+  .hero-cta{
+    display:inline-flex; align-items:center; gap:8px; margin-top:22px;
+    background:var(--gold); color:var(--navy-deep); font-weight:600; font-size:14px;
+    padding:13px 22px; border-radius:30px; text-decoration:none;
+  }
+  .scan-bar{ cursor:pointer; }
+  .navbar{
+    position:sticky; top:0; z-index:50; background:rgba(8,21,46,.92); backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .navbar-inner{
+    display:flex; align-items:center; justify-content:space-between; padding:11px 22px; max-width:1080px; margin:0 auto;
+  }
+  .navbar-logo{font-family:'Playfair Display',serif; font-style:italic; font-size:15px; color:#fff;}
+  .navbar-links{display:none;}
+  .navbar-links a{color:rgba(255,255,255,.78); text-decoration:none; font-size:12.5px; margin-left:20px;}
+  .navbar-links a:hover{color:var(--gold-light);}
+  .navbar-cta{
+    background:var(--gold); color:var(--navy-deep); font-size:11.5px; font-weight:600;
+    padding:7px 14px; border-radius:20px; text-decoration:none; white-space:nowrap;
+  }
+  @media(min-width:700px){ .navbar-links{display:flex; align-items:center;} }
+  .pmini-cta{
+    display:inline-block; margin-top:8px; font-size:10.5px; font-weight:600; color:var(--gold);
+    text-decoration:none; letter-spacing:.02em;
+  }
+  .pmini-cta:hover{text-decoration:underline;}
   .chip{
     background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14);
     padding:6px 11px; border-radius:20px; font-size:11.5px; color:#fff;
@@ -216,6 +244,9 @@
   footer .logo{color:var(--navy); justify-content:center; display:flex;}
   footer .logo-sub{color:var(--gold);}
   footer p{font-size:11px; color:var(--muted); margin-top:10px;}
+  .footer-links{margin-top:14px; display:flex; justify-content:center; gap:18px;}
+  .footer-links a{font-size:11.5px; color:var(--navy); text-decoration:none; font-weight:500;}
+  .footer-links a:hover{color:var(--gold);}
 
   /* ---------- STICKY CTA ---------- */
   .sticky-cta{
@@ -295,17 +326,30 @@
 </head>
 <body>
 
+<nav class="navbar">
+  <div class="navbar-inner">
+    <span class="navbar-logo">Matheus Rodrigues</span>
+    <div class="navbar-links">
+      <a href="#tecnicas">Técnicas</a>
+      <a href="#protocols">Protocolos</a>
+      <a href="#pagamento">Pagamento</a>
+      <a class="navbar-cta" id="waNav" href="#" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
+</nav>
+
 <div class="hero">
   <div class="container hero-grid">
     <div class="hero-text">
       <div class="logo-row">
         <span class="logo">Matheus Rodrigues</span>
-        <span class="logo-sub">Enfermeiro · COREN 000946535-ENF</span>
+        <span class="logo-sub">Enfermeiro · COREN 000946535-ENF · Altamira, PA</span>
       </div>
       <span class="eyebrow">Protocolos Terapêuticos Integrados</span>
       <h1>Seu corpo tem uma <em>história</em>.<br>A tecnologia clínica ajuda a lê-la — e a tratá-la.</h1>
       <p class="lede">Um portfólio premium com 10 protocolos integrativos, combinando avaliação, termografia, técnicas manuais, ventosaterapia, laserterapia, percussão, acupuntura e acompanhamento de evolução — com experiência clínica do início ao fim.</p>
-      <div class="scan-bar"><span class="scan-label">Termografia FLIR</span></div>
+      <a class="hero-cta" id="heroCta" href="#protocols">Ver os protocolos →</a>
+      <a class="scan-bar" href="#tecnicas"><span class="scan-label">Termografia FLIR</span></a>
       <div class="chips">
         <span class="chip">Liberação Miofascial</span>
         <span class="chip">Ventosaterapia</span>
@@ -322,7 +366,7 @@
   </div>
 </div>
 
-<div class="section container">
+<div class="section container" id="tecnicas">
   <h2>Conheça as técnicas</h2>
   <p class="sub">Técnicas reais e imagens de capa padronizadas para comunicar profissionalismo, tecnologia e cuidado humano.</p>
   <div class="tecnicas-grid">
@@ -372,7 +416,7 @@
   </div>
 </div>
 
-<div class="section container">
+<div class="section container" id="pagamento">
   <h2>Como funciona o pagamento</h2>
   <ul class="pay-list">
     <li><span class="mark">✓</span> Parcelamento em até 6x no cartão, disponível para todos os protocolos</li>
@@ -392,6 +436,10 @@
   </div>
   <span class="logo-sub" style="display:block;">Enfermeiro · COREN 000946535-ENF · Altamira, PA</span>
   <p>Todos os protocolos incluem avaliação termográfica por câmera FLIR, relatório de evolução e materiais de apoio digitais.</p>
+  <div class="footer-links">
+    <a href="https://instagram.com/matheusrodrigues.enf" target="_blank" rel="noopener">@matheusrodrigues.enf</a>
+    <a href="https://instagram.com/insive" target="_blank" rel="noopener">@insive</a>
+  </div>
 </footer>
 
 <div class="sticky-cta">
@@ -468,6 +516,7 @@ function waLink(msg){
 }
 
 document.getElementById('waMain').href = waLink('Olá! Vi o portfólio de protocolos e queria saber mais.');
+document.getElementById('waNav').href = waLink('Olá! Vi o portfólio de protocolos e queria saber mais.');
 
 const wrap = document.getElementById('protocols');
 
@@ -492,6 +541,7 @@ protocols.forEach((p, idx) => {
       <span class="pprice">
         <span class="from">a partir de</span>
         <span class="range">${brl(p.pMin)}</span>
+        <a class="pmini-cta" href="${waLink('Olá! Quero saber mais sobre o protocolo de ' + p.nome + '.')}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Quero saber mais →</a>
       </span>
       <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
     </summary>
