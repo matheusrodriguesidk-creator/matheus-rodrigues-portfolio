@@ -511,39 +511,20 @@ protocols.forEach((p, idx) => {
         </div>
       </div>
       <div class="calc">
-        <div class="calc-label">Monte seu pacote</div>
-        <div class="calc-row">
-          <input type="range" min="${p.sMin}" max="${p.sMax}" value="${p.sMax}" step="1" ${fixedSessions?'disabled':''} data-idx="${idx}" class="slider">
-          <span class="calc-sessions" id="sessions-${idx}">${p.sMax}x</span>
-        </div>
         <div class="calc-result">
-          <div class="calc-price" id="price-${idx}">${brl(p.pMax)}</div>
-          <div class="calc-sub" id="sub-${idx}"></div>
+          <div class="calc-label">Investimento</div>
+          <div class="calc-price">${fixedSessions ? brl(p.pMin) : brl(p.pMin) + ' – ' + brl(p.pMax)}</div>
+          <div class="calc-sub">${fixedSessions ? p.sMin+' sessões' : p.sMin+'–'+p.sMax+' sessões'} · parcelamos em até 6x no cartão</div>
         </div>
-        <a class="calc-cta" id="cta-${idx}" href="#" target="_blank" rel="noopener">Quero esse protocolo</a>
+        <a class="calc-cta" id="cta-${idx}" href="#" target="_blank" rel="noopener">Quero minha proposta personalizada</a>
       </div>
     </div>
   `;
   wrap.appendChild(det);
 
-  function update(sessions){
-    const frac = p.sMax === p.sMin ? 1 : (sessions - p.sMin) / (p.sMax - p.sMin);
-    const price = Math.round((p.pMin + frac * (p.pMax - p.pMin)) / 10) * 10;
-    document.getElementById(`sessions-${idx}`).textContent = sessions + 'x';
-    document.getElementById(`price-${idx}`).textContent = brl(price);
-    const installment = Math.ceil(price / 6 / 10) * 10;
-    const pix = Math.round(price * 0.95 / 10) * 10;
-    document.getElementById(`sub-${idx}`).innerHTML =
-      `6x de ${brl(installment)} no cartão · ou ${brl(pix)} à vista no PIX (5% off)`;
-    document.getElementById(`cta-${idx}`).href = waLink(
-      `Olá! Quero fechar o protocolo de ${p.nome} (${sessions} sessões, ${brl(price)}).`
-    );
-  }
-  update(p.sMax);
-
-  det.querySelector('.slider').addEventListener('input', (e) => {
-    update(parseInt(e.target.value, 10));
-  });
+  document.getElementById(`cta-${idx}`).href = waLink(
+    `Olá! Quero saber mais sobre o protocolo de ${p.nome}.`
+  );
 
   det.addEventListener('toggle', () => {
     if(det.open){ det.classList.add('open'); }
