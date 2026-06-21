@@ -127,10 +127,15 @@
     list-style:none; cursor:pointer; padding:16px 16px; display:flex; align-items:center; gap:13px;
   }
   .pcard summary::-webkit-details-marker{display:none;}
-  .pnum{
-    font-family:'Playfair Display',serif; font-size:13px; color:var(--gold);
-    border:1px solid var(--gold-light); border-radius:50%; width:30px; height:30px;
-    display:flex; align-items:center; justify-content:center; flex-shrink:0; font-weight:600;
+  .pthumb{
+    position:relative; width:52px; height:52px; border-radius:10px; overflow:hidden; flex-shrink:0;
+    background:var(--navy);
+  }
+  .pthumb img{width:100%; height:100%; object-fit:cover; display:block;}
+  .pthumb-fallback{
+    display:none; position:absolute; inset:0; align-items:center; justify-content:center;
+    background:linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+    color:var(--gold-light); font-family:'Playfair Display',serif; font-size:17px; font-weight:600;
   }
   .ptitle{flex:1; min-width:0;}
   .ptitle .name{font-family:'Playfair Display',serif; font-size:15.5px; color:var(--navy); font-weight:600; display:block;}
@@ -141,6 +146,7 @@
   .chevron{transition:transform .25s ease; color:var(--gold); flex-shrink:0;}
   .pcard[open] .chevron{transform:rotate(180deg);}
 
+  .pbanner{width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:8px; margin-bottom:14px; display:block;}
   .pbody{padding:0 16px 20px; border-top:1px solid var(--line); margin-top:2px; padding-top:16px;}
   .pbody .proposta{font-size:13.5px; color:var(--ink); margin-bottom:12px;}
   .pbody .perfil{font-size:12px; color:var(--muted); margin-bottom:16px;}
@@ -398,7 +404,11 @@ protocols.forEach((p, idx) => {
 
   det.innerHTML = `
     <summary>
-      <span class="pnum">${p.n}</span>
+      <span class="pthumb">
+        <img src="images/protocolos/${p.n}.jpg" alt="${p.nome}"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <span class="pthumb-fallback">${p.n}</span>
+      </span>
       <span class="ptitle">
         <span class="name">${p.nome}</span>
         <span class="meta">${fixedSessions ? p.sMin+' sessões' : p.sMin+'–'+p.sMax+' sessões'} · ${p.dur}</span>
@@ -410,6 +420,8 @@ protocols.forEach((p, idx) => {
       <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
     </summary>
     <div class="pbody">
+      <img class="pbanner" src="images/protocolos/${p.n}.jpg" alt="${p.nome}"
+           onerror="this.style.display='none';">
       <p class="proposta"><b style="color:var(--gold); font-weight:600;">${p.sub}</b><br>${p.proposta}</p>
       <p class="perfil"><b>Perfil indicado:</b> ${p.perfil}</p>
       <div class="pgrid">
