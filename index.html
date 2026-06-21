@@ -110,6 +110,18 @@
     background:linear-gradient(0deg, rgba(8,21,46,.88) 0%, rgba(8,21,46,0) 100%);
     color:#fff; font-size:11.5px; font-weight:500; padding:18px 10px 8px;
   }
+  .tecnica-foto.placeholder{
+    aspect-ratio:1/1; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    background:var(--thermal); gap:6px; grid-column:span 2;
+  }
+  .tecnica-foto.placeholder .ph-label{
+    font-size:11.5px; font-weight:500; color:#fff; text-shadow:0 1px 3px rgba(0,0,0,.35);
+  }
+  .tecnica-foto.placeholder .ph-tag{
+    font-size:9.5px; letter-spacing:.06em; text-transform:uppercase; color:rgba(255,255,255,.85);
+    background:rgba(8,21,46,.35); padding:3px 8px; border-radius:20px; backdrop-filter:blur(2px);
+  }
+  @media(min-width:760px){ .tecnica-foto.placeholder{grid-column:span 1;} }
 
   /* ---------- SECTION HEADERS ---------- */
   .section{padding:34px 22px;}
@@ -246,7 +258,7 @@
   @media(min-width:760px){
     .hero-grid{display:grid; grid-template-columns:1fr 290px; align-items:center; gap:52px;}
     .hero-photo{max-width:290px;}
-    .tecnicas-grid{grid-template-columns:repeat(4,1fr); gap:14px;}
+    .tecnicas-grid{grid-template-columns:repeat(5,1fr); gap:14px;}
   }
   .tecnica-foto{border-radius:18px; box-shadow:0 14px 32px rgba(14,35,71,.10);}
   .tecnica-foto img{transition:transform .5s ease, opacity .3s ease;}
@@ -291,9 +303,9 @@
         <span class="logo-sub">Enfermeiro · COREN 000946535-ENF</span>
       </div>
       <span class="eyebrow">Protocolos Terapêuticos Integrados</span>
-      <h1>Seu corpo tem uma <em>história</em>.<br>A termografia ajuda a lê-la.</h1>
+      <h1>Seu corpo tem uma <em>história</em>.<br>A tecnologia clínica ajuda a lê-la — e a tratá-la.</h1>
       <p class="lede">Um portfólio premium com 10 protocolos integrativos, combinando avaliação, termografia, técnicas manuais, ventosaterapia, laserterapia, percussão, acupuntura e acompanhamento de evolução — com experiência clínica do início ao fim.</p>
-      <div class="scan-bar"><span class="scan-label">Termografia FLIR Edge Pro</span></div>
+      <div class="scan-bar"><span class="scan-label">Termografia FLIR</span></div>
       <div class="chips">
         <span class="chip">Liberação Miofascial</span>
         <span class="chip">Ventosaterapia</span>
@@ -330,12 +342,16 @@
       <img src="images/tecnica-laser.jpg" alt="Aplicação de laserterapia" loading="lazy">
       <figcaption>Laserterapia</figcaption>
     </figure>
+    <figure class="tecnica-foto placeholder">
+      <span class="ph-label">Termografia</span>
+      <span class="ph-tag">Foto em breve</span>
+    </figure>
   </div>
 </div>
 
 <div class="section container">
   <h2>Escolha seu protocolo</h2>
-  <p class="sub">Cada card tem uma capa própria, descrição clara, técnicas aplicadas, entregáveis e simulador de pacote.</p>
+  <p class="sub">10 protocolos para as queixas mais comuns — cada um com avaliação inicial, técnicas combinadas sob medida e acompanhamento de evolução.</p>
   <div class="protocols" id="protocols"></div>
 </div>
 
@@ -359,9 +375,8 @@
 <div class="section container">
   <h2>Como funciona o pagamento</h2>
   <ul class="pay-list">
-    <li><span class="mark">✓</span> 50% na assinatura do protocolo + 50% na metade das sessões</li>
-    <li><span class="mark">✓</span> Parcelamento em até 6x no cartão para protocolos acima de R$ 1.200</li>
-    <li><span class="mark">✓</span> 5% de desconto pagando via PIX à vista</li>
+    <li><span class="mark">✓</span> Parcelamento em até 6x no cartão, disponível para todos os protocolos</li>
+    <li><span class="mark">✓</span> Pagamento à vista no PIX: 5% de desconto — ou divida em 2x (50% na assinatura + 50% na metade das sessões)</li>
     <li><span class="mark">✓</span> Avaliação inicial vira voucher de R$ 100 de desconto se fechar o protocolo em até 7 dias</li>
   </ul>
 </div>
@@ -376,7 +391,7 @@
     <span class="logo">Matheus Rodrigues</span>
   </div>
   <span class="logo-sub" style="display:block;">Enfermeiro · COREN 000946535-ENF · Altamira, PA</span>
-  <p>Todos os protocolos incluem avaliação termográfica FLIR Edge Pro, relatório de evolução e materiais de apoio digitais.</p>
+  <p>Todos os protocolos incluem avaliação termográfica por câmera FLIR, relatório de evolução e materiais de apoio digitais.</p>
 </footer>
 
 <div class="sticky-cta">
@@ -395,52 +410,52 @@ const WA_NUMBER = "5593991802709";
 
 const protocols = [
   {n:'01', img:'images/tecnica-ventosa.jpg', nome:'Lombalgia', sub:'Alívio e Restauração da Coluna Lombar', sMin:8, sMax:10, pMin:1200, pMax:1600, dur:'~90 min',
-   proposta:'Redução da dor lombar crônica/aguda, restauração da mobilidade e prevenção de recidiva.',
+   proposta:'A dor lombar raramente tem uma única causa — geralmente envolve fáscia retraída, musculatura sobrecarregada e padrões posturais repetidos sessão após sessão. O protocolo combina liberação miofascial da cadeia posterior, ventosaterapia paravertebral, percussão profunda e laserterapia anti-inflamatória, com termografia inicial e final para acompanhar a evolução. Indicado tanto para dor crônica instalada quanto para crises agudas, com foco em restaurar mobilidade e reduzir recidiva.',
    perfil:'Dor lombar crônica, postura inadequada, sedentários, esportistas, pós-op ortopédico.',
    tecnicas:['Liberação miofascial lombar e cadeia posterior','Ventosaterapia paravertebral e glútea','Percussão muscular profunda','Laserterapia anti-inflamatória/analgésica','Termografia inicial e final'],
    entregaveis:['Relatório termográfico','Relatório de evolução','Guia de exercícios','Orientações posturais','Suporte WhatsApp']},
   {n:'02', img:'images/tecnica-miofascial.jpg', nome:'Cervicalgia', sub:'Libertação da Tensão Cervical', sMin:6, sMax:8, pMin:960, pMax:1400, dur:'~80 min',
-   proposta:'Alívio de dor cervical, rigidez de nuca, cefaleia tensional e bruxismo associado.',
+   proposta:'Horas de tela e postura forçada acumulam tensão na cervical e no trapézio até virar dor constante, rigidez de nuca ou cefaleia tensional recorrente. Trabalha liberação miofascial cervical, ventosaterapia deslizante, percussão cranial e laserterapia em pontos-gatilho, com mapeamento termográfico para localizar onde a tensão se concentra. Pensado para quem passa o dia em frente a tela ou celular e sente a dor voltar toda semana.',
    perfil:'Trabalhadores de escritório, usuários intensivos de celular, cefaleia frequente.',
    tecnicas:['Liberação miofascial cervical e trapézio','Ventosaterapia deslizante cervical/dorsal','Percussão muscular cranial','Laserterapia em pontos-gatilho','Termografia de mapeamento cervical'],
    entregaveis:['Mapa termográfico cervical','Relatório de evolução','Guia de ergonomia digital','Exercícios cervicais','Suporte WhatsApp']},
   {n:'03', img:'images/tecnica-percussao.jpg', nome:'Gonalgia', sub:'Recuperação e Funcionalidade do Joelho', sMin:8, sMax:10, pMin:1200, pMax:1600, dur:'~90 min',
-   proposta:'Redução da inflamação e dor articular do joelho, melhora da mobilidade e recuperação funcional.',
+   proposta:'Joelho que dói ao subir escada, correr ou após treino geralmente sinaliza sobrecarga articular ou desequilíbrio muscular ainda sem diagnóstico estrutural grave. Combina liberação miofascial de quadríceps e IT-band, ventosaterapia periarticular, percussão de alta frequência e laserterapia tendinosa, com termografia monitorando a resposta inflamatória sessão a sessão. Indicado para corredores, praticantes de esporte, condromalácia, artrose inicial e pós-meniscectomia.',
    perfil:'Corredores, praticantes de futebol/vôlei, condromalácia, artrose inicial, pós-meniscectomia.',
    tecnicas:['Liberação miofascial quadríceps, IT-band','Ventosaterapia periarticular do joelho','Percussão muscular de alta frequência','Laserterapia articular e tendinosa','Termografia para monitoramento inflamatório'],
    entregaveis:['Imagens termográficas comparativas','Relatório funcional','Protocolo de fortalecimento','Orientações para retorno esportivo']},
   {n:'04', img:'images/tecnica-miofascial.jpg', nome:'Ansiedade', sub:'Equilíbrio Nervoso e Bem-Estar Mental', sMin:8, sMax:8, pMin:1100, pMax:1500, dur:'~80 min',
-   proposta:'Regulação do sistema nervoso autônomo, redução de tensão somática, melhora da qualidade de vida.',
+   proposta:'Ansiedade nem sempre se resolve só conversando — o corpo guarda tensão somática que mantém o sistema nervoso em alerta. Usa liberação miofascial do diafragma, ventosaterapia craniosacral relaxante, percussão suave e laserterapia sistêmica (ILIB), com termografia mapeando pontos de tensão somática. Voltado a quem vive sob estresse crônico ou ansiedade generalizada e sente o corpo travado mesmo em repouso.',
    perfil:'Profissionais sob estresse crônico, ansiedade generalizada, tensão muscular somática elevada.',
    tecnicas:['Liberação miofascial do diafragma e cadeia anterior','Ventosaterapia relaxante craniosacral','Percussão suave (modo relaxante)','Laserterapia sistêmica (ILIB)','Termografia de tensão somática'],
    entregaveis:['Mapa somático termográfico','Guia de respiração e mindfulness','Plano de higiene do sono','Acompanhamento semanal']},
   {n:'05', img:'images/tecnica-miofascial.jpg', nome:'Insônia', sub:'Restauração do Ciclo do Sono', sMin:6, sMax:8, pMin:960, pMax:1400, dur:'~75 min',
-   proposta:'Ativação do sistema parassimpático, redução do cortisol somático e restauração da qualidade do sono.',
+   proposta:'Sono ruim costuma vir com um sistema nervoso que não desliga — mente acelerada à noite, corpo tenso mesmo deitado. Ativa o parassimpático com liberação miofascial cranial e cervical, ventosaterapia dorsal e plantar, percussão em baixa frequência e laserterapia fotobiomoduladora, monitorando tensão por termografia. Indicado para quem tem dificuldade de desligar à noite, trabalha em turnos ou vive em hiperatividade nervosa.',
    perfil:'Insones crônicos, dificuldade de desligamento mental, trabalho noturno, hiperatividade nervosa.',
    tecnicas:['Liberação miofascial cranial e cervical','Ventosaterapia dorsal e plantar','Percussão de baixa frequência (modo sono)','Laserterapia fotobiomoduladora sistêmica','Termografia de pontos de tensão'],
    entregaveis:['Relatório de padrão tensional','Guia de higiene do sono','Áudio de relaxamento guiado','Acompanhamento semanal']},
   {n:'06', img:'images/tecnica-miofascial.jpg', nome:'SII Digestivo', sub:'Regulação do Eixo Intestino-Fáscia', sMin:8, sMax:12, pMin:1300, pMax:1800, dur:'~90 min',
-   proposta:'Abordagem corporal para SII, trabalhando conexões fasciais abdominais, nervo vago e sistema nervoso entérico.',
+   proposta:'A síndrome do intestino irritável tem componente fascial pouco explorado — tensão na parede abdominal e no diafragma interfere direto no nervo vago. Trabalha liberação miofascial abdominal e diafragmática, ventosaterapia abdominal e lombar, percussão suave visceral e laserterapia anti-inflamatória, com termografia abdominal identificando pontos quentes. Pensado para quem convive com distensão, cólon espástico ou desconforto pós-alimentar.',
    perfil:'SII, distensão abdominal, cólon espástico, constipação crônica funcional, desconforto pós-alimentar.',
    tecnicas:['Liberação miofascial abdominal e diafragmática','Ventosaterapia abdominal e lombar','Percussão suave na região visceral','Laserterapia anti-inflamatória abdominal','Termografia abdominal (pontos quentes)'],
    entregaveis:['Mapa termográfico abdominal','Guia alimentar orientativo','Exercícios de respiração diafragmática','Relatório de evolução dos sintomas']},
   {n:'07', img:'images/tecnica-ventosa.jpg', nome:'Emagrecimento', sub:'Ativação Metabólica Corporal', sMin:10, sMax:12, pMin:1400, pMax:2000, dur:'~90 min',
-   proposta:'Melhora da circulação, drenagem fascial, redução de fibroses (celulite), ativação metabólica local monitorada por termografia.',
+   proposta:'O emagrecimento trava quando circulação e drenagem fascial não acompanham o ritmo — fibrose e celulite ficam mais resistentes sem estímulo direto no tecido. Combina liberação miofascial anti-fibrose, ventosaterapia deslizante, percussão para ativação circulatória e laserterapia lipolítica coadjuvante, com termografia acompanhando a perfusão. Apoio corporal para quem já está em processo de emagrecimento e quer acelerar resultado visível.',
    perfil:'Em processo de emagrecimento, celulite moderada/grave, circulação comprometida.',
    tecnicas:['Liberação miofascial corporal (anti-fibrose)','Ventosaterapia corporal deslizante','Percussão para ativação circulatória','Laserterapia lipolítica coadjuvante','Termografia para acompanhar perfusão'],
    entregaveis:['Fotos + termografia comparativas','Relatório de evolução corporal','Guia de hábitos de apoio','Acompanhamento mensal']},
   {n:'08', img:'images/tecnica-ventosa.jpg', nome:'Saúde Hormonal', sub:'Equilíbrio Neuroendócrino Corporal', sMin:10, sMax:12, pMin:1500, pMax:2200, dur:'~90 min',
-   proposta:'Suporte corporal ao equilíbrio hormonal feminino e masculino: TPM, menopausa, fadiga adrenal. Complementar a tratamento médico.',
+   proposta:'TPM intensa, menopausa sintomática ou fadiga adrenal muitas vezes não respondem completamente só ao ajuste medicamentoso. Trabalha liberação miofascial pélvica e lombar, ventosaterapia no plexo solar e sacral, percussão suave e laserterapia para regulação neurológica, com termografia das regiões reflexas. Complementar ao acompanhamento médico, para quem sente sintomas mesmo em tratamento ou enfrenta burnout.',
    perfil:'TPM intensa/menopausa sintomática, burnout, fadiga crônica, desequilíbrio tireoidiano.',
    tecnicas:['Liberação miofascial pélvica e lombar','Ventosaterapia do plexo solar e sacral','Percussão suave em cadeias musculares','Laserterapia para regulação neurológica','Termografia hormonal (regiões reflexas)'],
    entregaveis:['Mapa termográfico hormonal','Guia de nutrição de suporte','Rotina de autocuidado mensal','Relatório para médico (se solicitado)']},
   {n:'09', img:'images/tecnica-percussao.jpg', nome:'Prevenção de Lesão Esportiva', sub:'Performance e Segurança', sMin:6, sMax:8, pMin:1000, pMax:1600, dur:'~85 min',
-   proposta:'Identificar sobrecargas musculofasciais e desequilíbrios antes da lesão acontecer. Ideal para corredores, crossfit, futebol, artes marciais.',
+   proposta:'A maioria das lesões avisa antes de acontecer — sobrecarga ou desequilíbrio de cadeia que já aparece na termografia antes de virar dor. Une liberação miofascial pré/pós-treino, ventosaterapia em zonas de sobrecarga, percussão de recuperação e laserterapia preventiva em tendões, com mapeamento térmico periódico. Para quem treina com regularidade e quer treinar com segurança, não só tratar depois que dói.',
    perfil:'Atletas amadores, corredores de rua, praticantes regulares de esporte.',
    tecnicas:['Liberação miofascial pré e pós-treino','Ventosaterapia em zonas de sobrecarga','Percussão muscular de recuperação','Laserterapia preventiva em tendões','Termografia para mapeamento térmico esportivo'],
    entregaveis:['Mapa de risco termográfico','Relatório de avaliação muscular','Rotina de aquecimento/desaquecimento','Plano de manutenção com desconto']},
   {n:'10', img:'images/tecnica-laser.jpg', nome:'Prevenção de Lesão de Pele', sub:'Integridade Dérmica e Fascial', sMin:6, sMax:8, pMin:1100, pMax:1800, dur:'~80 min',
-   proposta:'Melhora da circulação superficial, prevenção de fibroses e aderências fasciais. Termografia visualiza hipovascularização antes de virar problema.',
+   proposta:'Cicatrizes, fibroses pós-cirúrgicas e celulite avançada têm em comum a baixa perfusão local, o que trava a regeneração. Combina liberação miofascial superficial e profunda, ventosaterapia dermofascial, percussão na camada dérmica e laserterapia bioestimulante, com termografia de perfusão cutânea acompanhando a evolução. Para quem tem cicatrizes, fibroses ou pele com baixa elasticidade e quer estimular a regeneração de forma monitorada.',
    perfil:'Cicatrizes, fibroses pós-cirúrgicas, celulite avançada, pele com baixa elasticidade, queloides.',
    tecnicas:['Liberação miofascial superficial e profunda','Ventosaterapia deslizante dermofascial','Percussão de baixa frequência na camada dérmica','Laserterapia bioestimulante de tecido conjuntivo','Termografia de perfusão cutânea'],
    entregaveis:['Fotos + mapa termográfico cutâneo','Relatório com imagens comparativas','Guia de hidratação e cuidado dermal','Indicação de parceiros dermatologistas']},
