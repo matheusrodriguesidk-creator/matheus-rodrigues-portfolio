@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matheus Rodrigues · Protocolos Terapêuticos Integrados</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0E2347;
+    --navy-deep:#08152E;
+    --gold:#C9A84C;
+    --gold-light:#E2C97E;
+    --paper:#F7F5EF;
+    --paper-2:#EFEBE0;
+    --ink:#1B2430;
+    --muted:#6B7280;
+    --line:#E3DFD3;
+    --thermal: linear-gradient(90deg,#1E3A8A 0%,#0EA5A0 22%,#C9A84C 52%,#E2725B 78%,#C0392B 100%);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Jost',sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.55;
+    padding-bottom:84px;
+  }
+  h1,h2,h3,.display{font-family:'Playfair Display',serif;}
+  .eyebrow{
+    font-family:'Jost',sans-serif;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    font-size:11.5px;
+    font-weight:500;
+    color:var(--gold-light);
+  }
+  /* ---------- HERO ---------- */
+  .hero{
+    background:radial-gradient(ellipse at 30% -10%, #163259 0%, var(--navy) 45%, var(--navy-deep) 100%);
+    color:#fff;
+    padding:46px 22px 38px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:3px;
+    background:var(--thermal);
+    opacity:.9;
+  }
+  .logo-row{display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 10px; margin-bottom:28px;}
+  .logo{font-family:'Playfair Display',serif; font-style:italic; font-size:20px;}
+  .logo-sub{font-size:9.5px; letter-spacing:.18em; color:var(--gold-light); text-transform:uppercase;}
+  .hero h1{font-size:30px; line-height:1.22; font-weight:600; max-width:480px;}
+  .hero h1 em{color:var(--gold-light); font-style:italic;}
+  .hero p.lede{margin-top:14px; font-size:14.5px; color:rgba(255,255,255,.78); max-width:420px; font-weight:300;}
+  .scan-bar{
+    margin-top:26px; height:34px; border-radius:8px; overflow:hidden; position:relative;
+    background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12);
+  }
+  .scan-bar::before{
+    content:""; position:absolute; inset:0; background:var(--thermal); opacity:.85;
+    transform:translateX(-100%);
+    animation:scan 3.2s ease-in-out infinite;
+  }
+  @keyframes scan{
+    0%{transform:translateX(-100%);}
+    45%{transform:translateX(0);}
+    65%{transform:translateX(0);}
+    100%{transform:translateX(100%);}
+  }
+  .scan-label{
+    position:relative; z-index:2; height:100%; display:flex; align-items:center; justify-content:center;
+    font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:#fff; mix-blend-mode:difference;
+    font-weight:500;
+  }
+  .chips{display:flex; flex-wrap:wrap; gap:7px; margin-top:20px;}
+  .chip{
+    background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14);
+    padding:6px 11px; border-radius:20px; font-size:11.5px; color:#fff;
+  }
+
+  /* ---------- HERO PHOTO ---------- */
+  .hero-grid{display:flex; flex-direction:column; gap:24px;}
+  .hero-photo{position:relative; max-width:190px; margin:10px auto 0;}
+  .hero-photo img{
+    width:100%; aspect-ratio:1/1; object-fit:cover; object-position:50% 28%; border-radius:50%;
+    border:3px solid rgba(226,201,126,.55);
+    box-shadow:0 18px 40px rgba(0,0,0,.35);
+  }
+  .hero-photo-name{
+    margin-top:12px; text-align:center;
+  }
+  .hero-photo-name .nm{font-family:'Playfair Display',serif; font-size:14px; color:#fff; font-weight:600;}
+  .hero-photo-name .cr{display:block; font-size:9.5px; color:var(--gold-light); letter-spacing:.04em; margin-top:2px;}
+  @media(min-width:640px){
+    .hero-grid{flex-direction:row-reverse; align-items:center; gap:36px;}
+    .hero-photo{max-width:230px; margin:0; flex-shrink:0;}
+  }
+
+  /* ---------- TECNICAS GALLERY ---------- */
+  .tecnicas-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+  .tecnica-foto{border-radius:10px; overflow:hidden; position:relative; background:var(--navy);}
+  .tecnica-foto img{width:100%; aspect-ratio:1/1; object-fit:cover; display:block; opacity:.96;}
+  .tecnica-foto figcaption{
+    position:absolute; left:0; right:0; bottom:0;
+    background:linear-gradient(0deg, rgba(8,21,46,.88) 0%, rgba(8,21,46,0) 100%);
+    color:#fff; font-size:11.5px; font-weight:500; padding:18px 10px 8px;
+  }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section{padding:34px 22px;}
+  .section h2{font-size:22px; color:var(--navy); margin-bottom:6px; font-weight:600;}
+  .section .sub{font-size:13px; color:var(--muted); margin-bottom:20px; max-width:480px;}
+
+  /* ---------- PROTOCOL CARDS ---------- */
+  .protocols{display:flex; flex-direction:column; gap:10px;}
+  .pcard{
+    background:#fff; border:1px solid var(--line); border-radius:12px; overflow:hidden;
+    transition:box-shadow .25s ease;
+  }
+  .pcard.open{box-shadow:0 8px 28px rgba(14,35,71,.10);}
+  .pcard summary{
+    list-style:none; cursor:pointer; padding:16px 16px; display:flex; align-items:center; gap:13px;
+  }
+  .pcard summary::-webkit-details-marker{display:none;}
+  .pnum{
+    font-family:'Playfair Display',serif; font-size:13px; color:var(--gold);
+    border:1px solid var(--gold-light); border-radius:50%; width:30px; height:30px;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; font-weight:600;
+  }
+  .ptitle{flex:1; min-width:0;}
+  .ptitle .name{font-family:'Playfair Display',serif; font-size:15.5px; color:var(--navy); font-weight:600; display:block;}
+  .ptitle .meta{font-size:11.5px; color:var(--muted); margin-top:3px; display:block;}
+  .pprice{text-align:right; flex-shrink:0;}
+  .pprice .range{font-size:12.5px; font-weight:600; color:var(--navy); white-space:nowrap;}
+  .pprice .from{font-size:9px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em;}
+  .chevron{transition:transform .25s ease; color:var(--gold); flex-shrink:0;}
+  .pcard[open] .chevron{transform:rotate(180deg);}
+
+  .pbody{padding:0 16px 20px; border-top:1px solid var(--line); margin-top:2px; padding-top:16px;}
+  .pbody .proposta{font-size:13.5px; color:var(--ink); margin-bottom:12px;}
+  .pbody .perfil{font-size:12px; color:var(--muted); margin-bottom:16px;}
+  .pbody .perfil b{color:var(--ink); font-weight:500;}
+  .pgrid{display:grid; grid-template-columns:1fr; gap:14px; margin-bottom:16px;}
+  @media(min-width:560px){.pgrid{grid-template-columns:1fr 1fr;}}
+  .pgrid h4{font-size:10.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--gold); margin-bottom:7px; font-weight:600;}
+  .pgrid ul{list-style:none; font-size:12.5px; color:var(--ink);}
+  .pgrid li{padding:3px 0 3px 14px; position:relative;}
+  .pgrid li::before{content:"·"; position:absolute; left:2px; color:var(--gold);}
+
+  /* ---------- CALCULATOR ---------- */
+  .calc{
+    background:var(--paper-2); border-radius:10px; padding:16px; margin-top:4px;
+  }
+  .calc-label{font-size:11px; text-transform:uppercase; letter-spacing:.07em; color:var(--navy); font-weight:600; margin-bottom:10px;}
+  .calc-row{display:flex; align-items:center; gap:12px; margin-bottom:12px;}
+  .calc-row input[type=range]{flex:1; accent-color:var(--gold);}
+  .calc-sessions{font-family:'Playfair Display',serif; font-size:17px; color:var(--navy); min-width:64px; text-align:right;}
+  .calc-result{
+    background:var(--navy); color:#fff; border-radius:8px; padding:14px 16px; position:relative; overflow:hidden;
+  }
+  .calc-result::before{content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--thermal);}
+  .calc-price{font-family:'Playfair Display',serif; font-size:24px; color:var(--gold-light); font-weight:600;}
+  .calc-sub{font-size:11px; color:rgba(255,255,255,.7); margin-top:4px; line-height:1.5;}
+  .calc-cta{
+    display:block; text-align:center; margin-top:12px; background:var(--gold); color:var(--navy-deep);
+    padding:11px; border-radius:7px; font-size:13px; font-weight:600; text-decoration:none;
+  }
+
+  /* ---------- COMBO / PAGAMENTO ---------- */
+  .twocol{display:grid; grid-template-columns:1fr; gap:12px;}
+  @media(min-width:560px){.twocol{grid-template-columns:1fr 1fr;}}
+  .infocard{background:#fff; border:1px solid var(--line); border-radius:10px; padding:18px;}
+  .infocard .big{font-family:'Playfair Display',serif; font-size:22px; color:var(--navy); font-weight:600;}
+  .infocard .label{font-size:11px; color:var(--muted); margin-top:2px;}
+  .infocard p{font-size:12.5px; color:var(--ink); margin-top:8px;}
+
+  .pay-list{list-style:none; font-size:13px;}
+  .pay-list li{display:flex; gap:10px; padding:8px 0; border-bottom:1px solid var(--line);}
+  .pay-list li:last-child{border-bottom:none;}
+  .pay-list .mark{color:var(--gold); font-weight:700;}
+
+  /* ---------- POSITIONING QUOTE ---------- */
+  .quote{
+    background:var(--navy); color:#fff; padding:42px 22px; text-align:center; position:relative;
+  }
+  .quote::before, .quote::after{content:""; position:absolute; left:0; right:0; height:2px; background:var(--thermal); opacity:.7;}
+  .quote::before{top:0;} .quote::after{bottom:0;}
+  .quote p{font-family:'Playfair Display',serif; font-size:19px; font-style:italic; max-width:420px; margin:0 auto; line-height:1.5;}
+  .quote .by{margin-top:14px; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-light);}
+
+  /* ---------- FOOTER ---------- */
+  footer{padding:30px 22px 20px; text-align:center;}
+  footer .logo{color:var(--navy); justify-content:center; display:flex;}
+  footer .logo-sub{color:var(--gold);}
+  footer p{font-size:11px; color:var(--muted); margin-top:10px;}
+
+  /* ---------- STICKY CTA ---------- */
+  .sticky-cta{
+    position:fixed; left:0; right:0; bottom:0; z-index:50;
+    background:var(--navy); padding:12px 16px; display:flex; align-items:center; gap:12px;
+    box-shadow:0 -6px 20px rgba(0,0,0,.18);
+  }
+  .sticky-cta .txt{flex:1; color:#fff;}
+  .sticky-cta .txt .t1{font-size:12px; color:rgba(255,255,255,.7);}
+  .sticky-cta .txt .t2{font-family:'Playfair Display',serif; font-size:14.5px; font-weight:600;}
+  .sticky-cta a{
+    background:var(--gold); color:var(--navy-deep); padding:11px 18px; border-radius:24px;
+    font-size:13px; font-weight:600; text-decoration:none; white-space:nowrap; display:flex; align-items:center; gap:6px;
+  }
+
+  .container{max-width:640px; margin:0 auto;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="container hero-grid">
+    <div class="hero-text">
+      <div class="logo-row">
+        <span class="logo">Matheus Rodrigues</span>
+        <span class="logo-sub">Enfermeiro · COREN 000946535-ENF</span>
+      </div>
+      <span class="eyebrow">Protocolos Terapêuticos Integrados</span>
+      <h1>Seu corpo tem uma <em>história</em>.<br>A termografia ajuda a lê-la.</h1>
+      <p class="lede">10 protocolos combinando liberação miofascial, ventosaterapia, percussão muscular, laserterapia e mapeamento térmico FLIR — não sessão avulsa, resultado acompanhado do início ao fim.</p>
+      <div class="scan-bar"><span class="scan-label">Termografia FLIR Edge Pro</span></div>
+      <div class="chips">
+        <span class="chip">Liberação Miofascial</span>
+        <span class="chip">Ventosaterapia</span>
+        <span class="chip">Percussão Muscular</span>
+        <span class="chip">Laserterapia</span>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="images/retrato-serio.jpg" alt="Matheus Rodrigues, enfermeiro responsável pelos protocolos" loading="eager">
+      <div class="hero-photo-name"><span class="nm">Matheus Rodrigues</span><span class="cr">COREN 000946535-ENF</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="section container">
+  <h2>Conheça as técnicas</h2>
+  <p class="sub">Bastidores reais de atendimento — sem agulha como pilar do protocolo.</p>
+  <div class="tecnicas-grid">
+    <figure class="tecnica-foto">
+      <img src="images/tecnica-ventosa.jpg" alt="Aplicação de ventosaterapia" loading="lazy">
+      <figcaption>Ventosaterapia</figcaption>
+    </figure>
+    <figure class="tecnica-foto">
+      <img src="images/tecnica-miofascial.jpg" alt="Liberação miofascial manual" loading="lazy">
+      <figcaption>Liberação Miofascial</figcaption>
+    </figure>
+    <figure class="tecnica-foto">
+      <img src="images/tecnica-percussao.jpg" alt="Percussão muscular com massageador" loading="lazy">
+      <figcaption>Percussão Muscular</figcaption>
+    </figure>
+    <figure class="tecnica-foto">
+      <img src="images/tecnica-laser.jpg" alt="Aplicação de laserterapia" loading="lazy">
+      <figcaption>Laserterapia</figcaption>
+    </figure>
+  </div>
+</div>
+
+<div class="section container">
+  <h2>Escolha seu protocolo</h2>
+  <p class="sub">Toque para ver técnicas, entregáveis e montar seu pacote.</p>
+  <div class="protocols" id="protocols"></div>
+</div>
+
+<div class="section container">
+  <h2>Combine e economize</h2>
+  <p class="sub">Vale para quem fecha mais de um protocolo ou para empresas.</p>
+  <div class="twocol">
+    <div class="infocard">
+      <div class="big">−15%</div>
+      <div class="label">Combo de 2 protocolos</div>
+      <p>Desconto aplicado no protocolo de menor valor ao fechar dois simultaneamente.</p>
+    </div>
+    <div class="infocard">
+      <div class="big">−20%</div>
+      <div class="label">Corporativo · 3+ pessoas</div>
+      <p>Para empresas que fecham para equipes, com relatório coletivo de evolução.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section container">
+  <h2>Como funciona o pagamento</h2>
+  <ul class="pay-list">
+    <li><span class="mark">✓</span> 50% na assinatura do protocolo + 50% na metade das sessões</li>
+    <li><span class="mark">✓</span> Parcelamento em até 6x no cartão para protocolos acima de R$ 1.200</li>
+    <li><span class="mark">✓</span> 5% de desconto pagando via PIX à vista</li>
+    <li><span class="mark">✓</span> Avaliação inicial vira voucher de R$ 100 de desconto se fechar o protocolo em até 7 dias</li>
+  </ul>
+</div>
+
+<div class="quote">
+  <p>"Não competimos em preço com sessão avulsa — competimos em resultado e experiência."</p>
+  <div class="by">Matheus Rodrigues · Saúde Integrativa com Tecnologia</div>
+</div>
+
+<footer>
+  <div class="logo-row" style="justify-content:center; margin-bottom:6px;">
+    <span class="logo">Matheus Rodrigues</span>
+  </div>
+  <span class="logo-sub" style="display:block;">Enfermeiro · COREN 000946535-ENF · Altamira, PA</span>
+  <p>Todos os protocolos incluem avaliação termográfica FLIR Edge Pro, relatório de evolução e materiais de apoio digitais.</p>
+</footer>
+
+<div class="sticky-cta">
+  <div class="txt">
+    <div class="t1">Tire suas dúvidas</div>
+    <div class="t2">Fale no WhatsApp</div>
+  </div>
+  <a id="waMain" href="#" target="_blank" rel="noopener">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.07-1.33A9.93 9.93 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18a7.94 7.94 0 01-4.06-1.11l-.29-.17-3.01.79.8-2.93-.19-.3A7.96 7.96 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8zm4.36-5.96c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.46-.39-.4-.54-.41h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/></svg>
+    WhatsApp
+  </a>
+</div>
+
+<script>
+const WA_NUMBER = "5593991802709";
+
+const protocols = [
+  {n:'01', img:'images/tecnica-ventosa.jpg', nome:'Lombalgia', sub:'Alívio e Restauração da Coluna Lombar', sMin:8, sMax:10, pMin:1200, pMax:1600, dur:'~90 min',
+   proposta:'Redução da dor lombar crônica/aguda, restauração da mobilidade e prevenção de recidiva.',
+   perfil:'Dor lombar crônica, postura inadequada, sedentários, esportistas, pós-op ortopédico.',
+   tecnicas:['Liberação miofascial lombar e cadeia posterior','Ventosaterapia paravertebral e glútea','Percussão muscular profunda','Laserterapia anti-inflamatória/analgésica','Termografia inicial e final'],
+   entregaveis:['Relatório termográfico','Relatório de evolução','Guia de exercícios','Orientações posturais','Suporte WhatsApp']},
+  {n:'02', img:'images/tecnica-miofascial.jpg', nome:'Cervicalgia', sub:'Libertação da Tensão Cervical', sMin:6, sMax:8, pMin:960, pMax:1400, dur:'~80 min',
+   proposta:'Alívio de dor cervical, rigidez de nuca, cefaleia tensional e bruxismo associado.',
+   perfil:'Trabalhadores de escritório, usuários intensivos de celular, cefaleia frequente.',
+   tecnicas:['Liberação miofascial cervical e trapézio','Ventosaterapia deslizante cervical/dorsal','Percussão muscular cranial','Laserterapia em pontos-gatilho','Termografia de mapeamento cervical'],
+   entregaveis:['Mapa termográfico cervical','Relatório de evolução','Guia de ergonomia digital','Exercícios cervicais','Suporte WhatsApp']},
+  {n:'03', img:'images/tecnica-percussao.jpg', nome:'Gonalgia', sub:'Recuperação e Funcionalidade do Joelho', sMin:8, sMax:10, pMin:1200, pMax:1600, dur:'~90 min',
+   proposta:'Redução da inflamação e dor articular do joelho, melhora da mobilidade e recuperação funcional.',
+   perfil:'Corredores, praticantes de futebol/vôlei, condromalácia, artrose inicial, pós-meniscectomia.',
+   tecnicas:['Liberação miofascial quadríceps, IT-band','Ventosaterapia periarticular do joelho','Percussão muscular de alta frequência','Laserterapia articular e tendinosa','Termografia para monitoramento inflamatório'],
+   entregaveis:['Imagens termográficas comparativas','Relatório funcional','Protocolo de fortalecimento','Orientações para retorno esportivo']},
+  {n:'04', img:'images/tecnica-miofascial.jpg', nome:'Ansiedade', sub:'Equilíbrio Nervoso e Bem-Estar Mental', sMin:8, sMax:8, pMin:1100, pMax:1500, dur:'~80 min',
+   proposta:'Regulação do sistema nervoso autônomo, redução de tensão somática, melhora da qualidade de vida.',
+   perfil:'Profissionais sob estresse crônico, ansiedade generalizada, tensão muscular somática elevada.',
+   tecnicas:['Liberação miofascial do diafragma e cadeia anterior','Ventosaterapia relaxante craniosacral','Percussão suave (modo relaxante)','Laserterapia sistêmica (ILIB)','Termografia de tensão somática'],
+   entregaveis:['Mapa somático termográfico','Guia de respiração e mindfulness','Plano de higiene do sono','Acompanhamento semanal']},
+  {n:'05', img:'images/tecnica-miofascial.jpg', nome:'Insônia', sub:'Restauração do Ciclo do Sono', sMin:6, sMax:8, pMin:960, pMax:1400, dur:'~75 min',
+   proposta:'Ativação do sistema parassimpático, redução do cortisol somático e restauração da qualidade do sono.',
+   perfil:'Insones crônicos, dificuldade de desligamento mental, trabalho noturno, hiperatividade nervosa.',
+   tecnicas:['Liberação miofascial cranial e cervical','Ventosaterapia dorsal e plantar','Percussão de baixa frequência (modo sono)','Laserterapia fotobiomoduladora sistêmica','Termografia de pontos de tensão'],
+   entregaveis:['Relatório de padrão tensional','Guia de higiene do sono','Áudio de relaxamento guiado','Acompanhamento semanal']},
+  {n:'06', img:'images/tecnica-miofascial.jpg', nome:'SII Digestivo', sub:'Regulação do Eixo Intestino-Fáscia', sMin:8, sMax:12, pMin:1300, pMax:1800, dur:'~90 min',
+   proposta:'Abordagem corporal para SII, trabalhando conexões fasciais abdominais, nervo vago e sistema nervoso entérico.',
+   perfil:'SII, distensão abdominal, cólon espástico, constipação crônica funcional, desconforto pós-alimentar.',
+   tecnicas:['Liberação miofascial abdominal e diafragmática','Ventosaterapia abdominal e lombar','Percussão suave na região visceral','Laserterapia anti-inflamatória abdominal','Termografia abdominal (pontos quentes)'],
+   entregaveis:['Mapa termográfico abdominal','Guia alimentar orientativo','Exercícios de respiração diafragmática','Relatório de evolução dos sintomas']},
+  {n:'07', img:'images/tecnica-ventosa.jpg', nome:'Emagrecimento', sub:'Ativação Metabólica Corporal', sMin:10, sMax:12, pMin:1400, pMax:2000, dur:'~90 min',
+   proposta:'Melhora da circulação, drenagem fascial, redução de fibroses (celulite), ativação metabólica local monitorada por termografia.',
+   perfil:'Em processo de emagrecimento, celulite moderada/grave, circulação comprometida.',
+   tecnicas:['Liberação miofascial corporal (anti-fibrose)','Ventosaterapia corporal deslizante','Percussão para ativação circulatória','Laserterapia lipolítica coadjuvante','Termografia para acompanhar perfusão'],
+   entregaveis:['Fotos + termografia comparativas','Relatório de evolução corporal','Guia de hábitos de apoio','Acompanhamento mensal']},
+  {n:'08', img:'images/tecnica-ventosa.jpg', nome:'Saúde Hormonal', sub:'Equilíbrio Neuroendócrino Corporal', sMin:10, sMax:12, pMin:1500, pMax:2200, dur:'~90 min',
+   proposta:'Suporte corporal ao equilíbrio hormonal feminino e masculino: TPM, menopausa, fadiga adrenal. Complementar a tratamento médico.',
+   perfil:'TPM intensa/menopausa sintomática, burnout, fadiga crônica, desequilíbrio tireoidiano.',
+   tecnicas:['Liberação miofascial pélvica e lombar','Ventosaterapia do plexo solar e sacral','Percussão suave em cadeias musculares','Laserterapia para regulação neurológica','Termografia hormonal (regiões reflexas)'],
+   entregaveis:['Mapa termográfico hormonal','Guia de nutrição de suporte','Rotina de autocuidado mensal','Relatório para médico (se solicitado)']},
+  {n:'09', img:'images/tecnica-percussao.jpg', nome:'Prevenção de Lesão Esportiva', sub:'Performance e Segurança', sMin:6, sMax:8, pMin:1000, pMax:1600, dur:'~85 min',
+   proposta:'Identificar sobrecargas musculofasciais e desequilíbrios antes da lesão acontecer. Ideal para corredores, crossfit, futebol, artes marciais.',
+   perfil:'Atletas amadores, corredores de rua, praticantes regulares de esporte.',
+   tecnicas:['Liberação miofascial pré e pós-treino','Ventosaterapia em zonas de sobrecarga','Percussão muscular de recuperação','Laserterapia preventiva em tendões','Termografia para mapeamento térmico esportivo'],
+   entregaveis:['Mapa de risco termográfico','Relatório de avaliação muscular','Rotina de aquecimento/desaquecimento','Plano de manutenção com desconto']},
+  {n:'10', img:'images/tecnica-laser.jpg', nome:'Prevenção de Lesão de Pele', sub:'Integridade Dérmica e Fascial', sMin:6, sMax:8, pMin:1100, pMax:1800, dur:'~80 min',
+   proposta:'Melhora da circulação superficial, prevenção de fibroses e aderências fasciais. Termografia visualiza hipovascularização antes de virar problema.',
+   perfil:'Cicatrizes, fibroses pós-cirúrgicas, celulite avançada, pele com baixa elasticidade, queloides.',
+   tecnicas:['Liberação miofascial superficial e profunda','Ventosaterapia deslizante dermofascial','Percussão de baixa frequência na camada dérmica','Laserterapia bioestimulante de tecido conjuntivo','Termografia de perfusão cutânea'],
+   entregaveis:['Fotos + mapa termográfico cutâneo','Relatório com imagens comparativas','Guia de hidratação e cuidado dermal','Indicação de parceiros dermatologistas']},
+];
+
+function brl(v){ return v.toLocaleString('pt-BR', {style:'currency', currency:'BRL', maximumFractionDigits:0}); }
+
+function waLink(msg){
+  return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+}
+
+document.getElementById('waMain').href = waLink('Olá! Vi o portfólio de protocolos e queria saber mais.');
+
+const wrap = document.getElementById('protocols');
+
+protocols.forEach((p, idx) => {
+  const det = document.createElement('details');
+  det.className = 'pcard';
+  det.id = `p${idx}`;
+
+  const fixedSessions = p.sMin === p.sMax;
+
+  det.innerHTML = `
+    <summary>
+      <span class="pnum">${p.n}</span>
+      <span class="ptitle">
+        <span class="name">${p.nome}</span>
+        <span class="meta">${fixedSessions ? p.sMin+' sessões' : p.sMin+'–'+p.sMax+' sessões'} · ${p.dur}</span>
+      </span>
+      <span class="pprice">
+        <span class="from">a partir de</span>
+        <span class="range">${brl(p.pMin)}</span>
+      </span>
+      <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="pbody">
+      <p class="proposta"><b style="color:var(--gold); font-weight:600;">${p.sub}</b><br>${p.proposta}</p>
+      <p class="perfil"><b>Perfil indicado:</b> ${p.perfil}</p>
+      <div class="pgrid">
+        <div>
+          <h4>Técnicas</h4>
+          <ul>${p.tecnicas.map(t=>`<li>${t}</li>`).join('')}</ul>
+        </div>
+        <div>
+          <h4>Você recebe</h4>
+          <ul>${p.entregaveis.map(t=>`<li>${t}</li>`).join('')}</ul>
+        </div>
+      </div>
+      <div class="calc">
+        <div class="calc-label">Monte seu pacote</div>
+        <div class="calc-row">
+          <input type="range" min="${p.sMin}" max="${p.sMax}" value="${p.sMax}" step="1" ${fixedSessions?'disabled':''} data-idx="${idx}" class="slider">
+          <span class="calc-sessions" id="sessions-${idx}">${p.sMax}x</span>
+        </div>
+        <div class="calc-result">
+          <div class="calc-price" id="price-${idx}">${brl(p.pMax)}</div>
+          <div class="calc-sub" id="sub-${idx}"></div>
+        </div>
+        <a class="calc-cta" id="cta-${idx}" href="#" target="_blank" rel="noopener">Quero esse protocolo</a>
+      </div>
+    </div>
+  `;
+  wrap.appendChild(det);
+
+  function update(sessions){
+    const frac = p.sMax === p.sMin ? 1 : (sessions - p.sMin) / (p.sMax - p.sMin);
+    const price = Math.round((p.pMin + frac * (p.pMax - p.pMin)) / 10) * 10;
+    document.getElementById(`sessions-${idx}`).textContent = sessions + 'x';
+    document.getElementById(`price-${idx}`).textContent = brl(price);
+    const installment = Math.ceil(price / 6 / 10) * 10;
+    const pix = Math.round(price * 0.95 / 10) * 10;
+    document.getElementById(`sub-${idx}`).innerHTML =
+      `6x de ${brl(installment)} no cartão · ou ${brl(pix)} à vista no PIX (5% off)`;
+    document.getElementById(`cta-${idx}`).href = waLink(
+      `Olá! Quero fechar o protocolo de ${p.nome} (${sessions} sessões, ${brl(price)}).`
+    );
+  }
+  update(p.sMax);
+
+  det.querySelector('.slider').addEventListener('input', (e) => {
+    update(parseInt(e.target.value, 10));
+  });
+
+  det.addEventListener('toggle', () => {
+    if(det.open){ det.classList.add('open'); }
+    else{ det.classList.remove('open'); }
+  });
+});
+</script>
+
+</body>
+</html>
