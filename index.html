@@ -253,6 +253,23 @@
   .closing-cta p{font-size:13.5px; color:var(--muted); margin:8px auto 18px; max-width:340px;}
   .closing-cta .hero-cta{color:var(--navy-deep);}
 
+  /* ---------- PRIMEIRA SESSAO ---------- */
+  .first-session{
+    border:1.5px solid var(--gold); border-radius:18px; background:linear-gradient(160deg, #FBF7EC, #F3EBD6);
+    padding:26px 22px; box-shadow:0 14px 32px rgba(201,168,76,.14); position:relative; overflow:hidden;
+  }
+  .first-session::before{content:""; position:absolute; left:0; right:0; top:0; height:3px; background:var(--thermal);}
+  .fs-eyebrow{font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); font-weight:600;}
+  .first-session h3{font-family:'Playfair Display',serif; font-size:21px; color:var(--navy); margin-top:6px; font-weight:600;}
+  .fs-sub{font-size:13.5px; color:var(--navy); font-weight:500; margin-top:2px;}
+  .first-session p.fs-desc{font-size:13.5px; color:var(--muted); margin-top:10px; line-height:1.55; max-width:480px;}
+  .fs-list{list-style:none; margin-top:14px; display:flex; flex-direction:column; gap:7px;}
+  .fs-list li{font-size:13px; color:var(--ink); padding-left:20px; position:relative;}
+  .fs-list li::before{content:"✓"; position:absolute; left:0; color:var(--gold); font-weight:700;}
+  .fs-bottom{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px; margin-top:18px;}
+  .fs-price{font-family:'Playfair Display',serif; font-size:26px; color:var(--navy); font-weight:600;}
+  .fs-price span{font-size:11px; color:var(--muted); font-weight:400; display:block; font-family:'Jost',sans-serif; text-transform:uppercase; letter-spacing:.04em;}
+
   /* ---------- FOOTER ---------- */
   footer{padding:30px 22px 20px; text-align:center;}
   footer .logo{color:var(--navy); justify-content:center; display:flex;}
@@ -351,6 +368,7 @@
     <span class="navbar-logo">Matheus Rodrigues</span>
     <div class="navbar-links">
       <a href="#tecnicas">Técnicas</a>
+      <a href="#primeira-sessao">Primeira Sessão</a>
       <a href="#protocols">Protocolos</a>
       <a href="#pagamento">Pagamento</a>
       <a class="navbar-cta" id="waNav" href="#" target="_blank" rel="noopener">WhatsApp</a>
@@ -369,8 +387,8 @@
       <h1>Seu corpo tem uma <em>história</em>.<br>A tecnologia clínica ajuda a lê-la — e a tratá-la.</h1>
       <p class="lede">Um portfólio premium com 10 protocolos integrativos, combinando avaliação, termografia, técnicas manuais, ventosaterapia, laserterapia, percussão, acupuntura e acompanhamento de evolução — com experiência clínica do início ao fim.</p>
       <div class="hero-cta-group">
-        <a class="hero-cta" id="heroCta" href="#protocols">Ver os protocolos →</a>
-        <a class="hero-cta-secondary" id="heroCtaWa" href="#" target="_blank" rel="noopener">Falar antes de decidir</a>
+        <a class="hero-cta" id="heroCtaPrimaria" href="#" target="_blank" rel="noopener">Agendar minha primeira sessão →</a>
+        <a class="hero-cta-secondary" id="heroCtaProtocolos" href="#protocols">Ver os protocolos</a>
       </div>
       <a class="scan-bar" href="#tecnicas"><span class="scan-label">Termografia FLIR</span></a>
       <div class="chips">
@@ -416,9 +434,27 @@
   </div>
 </div>
 
+<div class="section container" id="primeira-sessao">
+  <div class="first-session">
+    <span class="fs-eyebrow">Não sabe por onde começar?</span>
+    <h3>Sessão de Avaliação e Alívio Muscular</h3>
+    <p class="fs-desc">60 minutos de avaliação postural + técnicas manuais direcionadas para sua queixa. Você sente o resultado na hora e entende o que seu corpo precisa. Se decidir seguir com um protocolo em até 7 dias, o valor já entra como desconto.</p>
+    <ul class="fs-list">
+      <li>Avaliação postural e de queixas</li>
+      <li>Liberação miofascial direcionada</li>
+      <li>Ventosaterapia ou percussão conforme a queixa</li>
+      <li>Orientação sobre próximos passos</li>
+    </ul>
+    <div class="fs-bottom">
+      <div class="fs-price"><span>Investimento</span>R$ 150</div>
+      <a class="hero-cta" id="fsCta" href="#" target="_blank" rel="noopener">Agendar agora →</a>
+    </div>
+  </div>
+</div>
+
 <div class="section container">
   <h2>Escolha seu protocolo</h2>
-  <p class="sub">10 protocolos para as queixas mais comuns — cada um com avaliação inicial, técnicas combinadas sob medida e acompanhamento de evolução.</p>
+  <p class="sub">Já fez sua primeira sessão e quer seguir com um tratamento completo? Escolha o protocolo ideal para sua queixa.</p>
   <div class="protocols" id="protocols"></div>
 </div>
 
@@ -455,8 +491,8 @@
 
 <div class="closing-cta">
   <h3>Pronto para começar?</h3>
-  <p>Tire suas dúvidas ou já marque sua avaliação inicial direto no WhatsApp.</p>
-  <a class="hero-cta" id="closingWa" href="#" target="_blank" rel="noopener">Falar no WhatsApp →</a>
+  <p>Comece com uma sessão. Sem compromisso com protocolo — só resultado.</p>
+  <a class="hero-cta" id="closingWa" href="#" target="_blank" rel="noopener">Agendar minha primeira sessão →</a>
 </div>
 
 <footer>
@@ -550,10 +586,12 @@ function waLink(msg){
   return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
 }
 
+const FS_MSG = 'Olá, Matheus! Quero agendar minha primeira sessão de avaliação muscular.';
 document.getElementById('waMain').href = waLink('Olá! Vi o portfólio de protocolos e queria saber mais.');
 document.getElementById('waNav').href = waLink('Olá! Vi o portfólio de protocolos e queria saber mais.');
-document.getElementById('heroCtaWa').href = waLink('Olá! Vi o portfólio e queria tirar uma dúvida antes de escolher o protocolo.');
-document.getElementById('closingWa').href = waLink('Olá! Vi o portfólio de protocolos e quero marcar minha avaliação inicial.');
+document.getElementById('heroCtaPrimaria').href = waLink(FS_MSG);
+document.getElementById('fsCta').href = waLink(FS_MSG);
+document.getElementById('closingWa').href = waLink(FS_MSG);
 
 const wrap = document.getElementById('protocols');
 
