@@ -171,11 +171,19 @@
   }
   .pcard.open{box-shadow:0 8px 28px rgba(14,35,71,.10);}
   .pcard summary{
-    list-style:none; cursor:pointer; padding:16px 16px; display:flex; align-items:flex-start; gap:13px;
+    list-style:none; cursor:pointer; padding:16px;
+    display:grid;
+    grid-template-columns: 64px 1fr auto;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "thumb name    chevron"
+      "thumb details chevron";
+    column-gap:13px; row-gap:3px; align-items:center;
   }
   .pcard summary::-webkit-details-marker{display:none;}
   .pthumb{
-    position:relative; width:52px; height:52px; border-radius:10px; overflow:hidden; flex-shrink:0;
+    grid-area:thumb; align-self:center;
+    position:relative; width:64px; height:64px; border-radius:12px; overflow:hidden; flex-shrink:0;
     background:var(--navy);
   }
   .pthumb img{width:100%; height:100%; object-fit:cover; display:block;}
@@ -184,13 +192,17 @@
     background:linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
     color:var(--gold-light); font-family:'Playfair Display',serif; font-size:17px; font-weight:600;
   }
-  .ptitle{flex:1; min-width:0; overflow:hidden;}
-  .ptitle .name{font-family:'Playfair Display',serif; font-size:15.5px; color:var(--navy); font-weight:600; display:block; line-height:1.2;}
-  .ptitle .meta{font-size:11.5px; color:var(--muted); margin-top:3px; display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
-  .pprice{text-align:right; flex-shrink:0; min-width:0;}
-  .pprice .range{font-size:12.5px; font-weight:600; color:var(--navy); white-space:nowrap;}
+  .ptitle{grid-area:name; min-width:0;}
+  .ptitle .name{font-family:'Playfair Display',serif; font-size:16px; color:var(--navy); font-weight:600; display:block; line-height:1.2;}
+  .ptitle .meta{display:none;}
+  .pprice{
+    grid-area:details; min-width:0;
+    display:flex; align-items:baseline; gap:8px; flex-wrap:wrap;
+  }
+  .pprice .meta-inline{font-size:11px; color:var(--muted); white-space:nowrap;}
   .pprice .from{font-size:9px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; white-space:nowrap;}
-  .chevron{transition:transform .25s ease; color:var(--gold); flex-shrink:0;}
+  .pprice .range{font-size:13px; font-weight:700; color:var(--navy); white-space:nowrap;}
+  .chevron{grid-area:chevron; align-self:center; transition:transform .25s ease; color:var(--gold); flex-shrink:0;}
   .pcard[open] .chevron{transform:rotate(180deg);}
 
   .pbanner{width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:8px; margin-bottom:14px; display:block;}
@@ -339,14 +351,14 @@
     box-shadow:0 16px 42px rgba(14,35,71,.06);
   }
   .pcard.open{box-shadow:0 24px 60px rgba(14,35,71,.16); border-color:rgba(201,168,76,.55);}
-  .pcard summary{padding:18px; gap:16px;}
+  .pcard summary{padding:18px; grid-template-columns:82px 1fr auto;}
   .pthumb{width:82px; height:82px; border-radius:18px; box-shadow:0 10px 24px rgba(14,35,71,.13);}
   .pthumb::after{
     content:""; position:absolute; inset:0; background:linear-gradient(180deg, transparent 45%, rgba(8,21,46,.32));
   }
   .ptitle .name{font-size:20px; line-height:1.15;}
-  .ptitle .meta{font-size:12.5px;}
-  .pprice .range{font-size:14px;}
+  .pprice .range{font-size:15px;}
+  .pprice .meta-inline{font-size:12px;}
   .pbody{padding:18px 18px 22px;}
   .pbanner{aspect-ratio:16/10; border-radius:18px; margin-bottom:18px; box-shadow:0 16px 40px rgba(14,35,71,.12);}
   .proposta b{display:inline-block; margin-bottom:4px; font-size:14px;}
@@ -614,6 +626,7 @@ protocols.forEach((p, idx) => {
         <span class="meta">${fixedSessions ? p.sMin+' sessões' : p.sMin+'–'+p.sMax+' sessões'} · ${p.dur}</span>
       </span>
       <span class="pprice">
+        <span class="meta-inline">${fixedSessions ? p.sMin+' sessões' : p.sMin+'–'+p.sMax+' sessões'} · ${p.dur}</span>
         <span class="from">a partir de</span>
         <span class="range">${brl(p.pMin)}</span>
       </span>
